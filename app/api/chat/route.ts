@@ -23,6 +23,7 @@ export async function POST(req: Request) {
     stream: true,
     messages: messages,
   });
+  console.log('openai.chat.completions created')
 
   response.controller.signal.addEventListener('abort', () => {
     console.log('openai.chat.completions aborted')
