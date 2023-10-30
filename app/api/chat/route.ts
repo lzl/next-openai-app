@@ -21,8 +21,13 @@ export async function POST(req: Request) {
     messages: messages,
   });
 
+  response.controller.signal.addEventListener('abort', () => {
+    console.log('openai.chat.completions aborted')
+  });
+
   // Convert the response into a friendly text-stream
   const stream = OpenAIStream(response);
+
   // Respond with the stream
   return new StreamingTextResponse(stream);
 }
