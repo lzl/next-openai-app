@@ -3,9 +3,10 @@
 import { useChat } from 'ai/react';
 
 export default function Chat() {
-  const { messages, input, handleInputChange, handleSubmit, data } = useChat();
+  const { messages, input, handleInputChange, handleSubmit, isLoading, stop } = useChat();
   return (
     <div className="flex flex-col w-full max-w-md py-24 mx-auto stretch">
+      {isLoading && <button onClick={stop}>stop</button>}
       {messages.length > 0
         ? messages.map(m => (
             <div key={m.id} className="whitespace-pre-wrap">
